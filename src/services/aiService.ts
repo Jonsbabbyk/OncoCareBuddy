@@ -1,8 +1,8 @@
-// src/services/aiService.ts
-
 import { AIGuidance } from '../types';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+// Use the environment variable-based configuration
+// This is the correct way to get the dynamic URL
+import { API_BASE_URL } from '../config';
 
 /**
  * Generates AI-powered guidance for a user's symptom.
@@ -14,6 +14,7 @@ export const generateAIGuidance = async (
   notes: string
 ): Promise<AIGuidance> => {
   try {
+    // The fetch URL now correctly uses the dynamic API_BASE_URL
     const response = await fetch(`${API_BASE_URL}/get-ai-guidance`, {
       method: 'POST',
       headers: {
@@ -29,10 +30,9 @@ export const generateAIGuidance = async (
 
     const aiResponse = await response.json();
 
-    // Map the Groq response to your AIGuidance type
     return {
       id: `guidance-${Date.now()}`,
-      symptomId: '', 
+      symptomId: '',
       response: aiResponse.response,
       urgencyLevel: aiResponse.urgencyLevel,
       recommendations: aiResponse.recommendations,
@@ -50,6 +50,7 @@ export const generateAIGuidance = async (
  */
 export const simplifyDoctorNote = async (originalText: string): Promise<string> => {
   try {
+    // Corrected fetch URL
     const response = await fetch(`${API_BASE_URL}/simplify-note`, {
       method: 'POST',
       headers: {
@@ -78,6 +79,7 @@ export const simplifyDoctorNote = async (originalText: string): Promise<string> 
  */
 export const getChatResponse = async (userMessage: string): Promise<string> => {
   try {
+    // Corrected fetch URL
     const response = await fetch(`${API_BASE_URL}/chat-response`, {
       method: 'POST',
       headers: {
