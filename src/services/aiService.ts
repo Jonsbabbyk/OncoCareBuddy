@@ -14,8 +14,8 @@ export const generateAIGuidance = async (
   notes: string
 ): Promise<AIGuidance> => {
   try {
-    // The fetch URL now correctly uses the dynamic API_BASE_URL
-    const response = await fetch(`${API_BASE_URL}/get-ai-guidance`, {
+    // The fetch URL now correctly uses the dynamic API_BASE_URL and the /api path.
+    const response = await fetch(`${API_BASE_URL}/api/get-ai-guidance`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const generateAIGuidance = async (
 export const simplifyDoctorNote = async (originalText: string): Promise<string> => {
   try {
     // Corrected fetch URL
-    const response = await fetch(`${API_BASE_URL}/simplify-note`, {
+    const response = await fetch(`${API_BASE_URL}/api/simplify-note`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export const simplifyDoctorNote = async (originalText: string): Promise<string> 
 export const getChatResponse = async (userMessage: string): Promise<string> => {
   try {
     // Corrected fetch URL
-    const response = await fetch(`${API_BASE_URL}/chat-response`, {
+    const response = await fetch(`${API_BASE_URL}/api/chat-response`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
